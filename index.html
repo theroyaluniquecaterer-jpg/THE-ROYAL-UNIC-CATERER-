@@ -1,0 +1,759 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Unic Caterer - বুকিং পোর্টাল</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c0408; /* Deep Wine / Maroon */
+            --secondary: #d4af37; /* Royal Gold */
+            --accent: #27ae60;
+            --bg-color: #fcf8f2;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #fdf8f5 0%, #f4ecf0 50%, #f9f6ed 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: radial-gradient(circle, #4a0d14 0%, #2c0408 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #3d050b 0%, #1a0204 100%);
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.7);
+            overflow: hidden;
+        }
+
+        .logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', 'Hind Siliguri', serif;
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #f3e5ab;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Top Guest Box Styles */
+        .top-guest-box {
+            background: linear-gradient(135deg, #ffffff 0%, #fffdfa 100%);
+            padding: 25px 35px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.2);
+            text-align: center;
+            border: 3px solid var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .top-guest-box label {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Cinzel', 'Hind Siliguri', serif;
+        }
+
+        .top-guest-box input {
+            font-size: 1.4rem;
+            padding: 10px 20px;
+            width: 140px;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            outline: none;
+            background: #fdfaf6;
+            color: var(--primary);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 8px;
+            margin: 40px 0 20px 0;
+            display: inline-block;
+            font-weight: 700;
+            font-family: 'Cinzel', 'Hind Siliguri', serif;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 1px solid #fae1bb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: var(--secondary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        tr:hover {
+            background-color: #fdfaf6;
+        }
+
+        .item-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .item-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.4);
+            cursor: pointer;
+            accent-color: var(--secondary);
+        }
+
+        /* Highlight Custom Dish Callout Box */
+        .custom-dish-highlight {
+            background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .custom-dish-highlight h3 {
+            color: var(--primary);
+            font-family: 'Cinzel', 'Hind Siliguri', serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .custom-dish-highlight p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .custom-dish-highlight a {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .custom-dish-highlight a:hover {
+            background-color: #1ebe5d;
+            transform: translateY(-2px);
+        }
+
+        .summary-box {
+            position: sticky;
+            bottom: 20px;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 1000;
+            border: 3px solid var(--secondary);
+            margin-top: 20px;
+            background: linear-gradient(to right, #ffffff, #fffdfa);
+        }
+
+        .summary-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .summary-total span {
+            color: var(--accent);
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25d366;
+            color: white;
+            padding: 14px 35px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1ebe5d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Note Section Styles */
+        .note-box {
+            background: #fff8e1;
+            border-left: 5px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .note-box h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .note-box p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .contact-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            border: 1px solid #fae1bb;
+        }
+
+        .contact-item {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 25px;
+            font-size: 1rem;
+            margin-bottom: 80px;
+            border-top: 4px solid var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.5rem; }
+            th, td { padding: 10px 12px; }
+            .summary-box { flex-direction: column; text-align: center; }
+            .whatsapp-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="92" fill="none" stroke="#d4af37" stroke-width="4"/>
+                <circle cx="100" cy="100" r="84" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <path d="M70 85 L85 55 L100 75 L115 55 L130 85 Z" fill="#d4af37"/>
+               <circle cx="70" cy="85" r="4" fill="#d4af37"/>
+                <circle cx="100" cy="75" r="4" fill="#d4af37"/>
+                <circle cx="130" cy="85" r="4" fill="#d4af37"/>
+                <text x="100" y="128" font-family="'Cinzel', serif" font-size="42" font-weight="bold" fill="#d4af37" text-anchor="middle">RUC</text>
+                <text x="100" y="155" font-family="'Cinzel', serif" font-size="14" font-weight="600" fill="#f3e5ab" text-anchor="middle" letter-spacing="3">CATERERS</text>
+            </svg>
+        </div>
+        <h1>The RUC Caters</h1>
+        <p>शाही स्वाद ও রন্ধনশিল্পের আভিজাত্য -- আপনার পছন্দের মেনু সিলেক্ট করে সরাসরি বুকিং করুন</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- FIRST: Guest Count Section at the very top -->
+        <div class="top-guest-box">
+            <label for="guest-count">
+                <i class="fas fa-users" style="color: var(--secondary); margin-right: 8px;"></i> প্রথমে মোট কত লোকের খাবার হবে তা লিখুন:
+            </label>
+            <input type="number" id="guest-count" value="1" min="1">
+        </div>
+
+        <!-- First List: Food & Serving Prices -->
+        <h2 class="section-title"><i class="fas fa-utensils"></i> প্রথম তালিকা: খাবারের পরিবেশন ও দাম (ধারাবাহিক মেনু অনুযায়ী)</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>সিলেক্ট</th>
+                        <th>ক্রম</th>
+                        <th>ক্যাটাগরি</th>
+                        <th>খাবারের পরিবেশন নাম</th>
+                        <th>দাম (টাকা)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="লবণ পরিবেশন (সার্ভিস রেট)" data-price="1.00"></td>
+                        <td>১</td>
+                        <td>সার্ভিস রেট</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1518112166588-b74313e614d7?w=100&auto=format&fit=crop&q=80" alt="লবণ" class="item-img"><span>লবণ পরিবেশন</span></div></td>
+                        <td class="price">১.০০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="স্যালাড (কাটার ও প্রস্তুতের ও পরিবেশনের)" data-price="1.20"></td>
+                        <td>২</td>
+                        <td>স্টার্টার / সালাদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=100&auto=format&fit=crop&q=80" alt="স্যালাড" class="item-img"><span>স্যালাড (কাটার ও প্রস্তুতের ও পরিবেশনের)</span></div></td>
+                        <td class="price">১.২০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="সস্ (পরিবেশন ও রান্না সহ)" data-price="0.55"></td>
+                        <td>৩</td>
+                        <td>সস্</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1472476443507-c7a5948773fc?w=100&auto=format&fit=crop&q=80" alt="সস্" class="item-img"><span>সস্ (পরিবেশন ও রান্না সহ)</span></div></td>
+                        <td class="price">০.৫৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="ডিমের ডেভিল (তৈরি ও ডিমের ডেভিল)" data-price="1.00"></td>
+                        <td>৪</td>
+                        <td>স্টার্টার</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=100&auto=format&fit=crop&q=80" alt="ডিম" class="item-img"><span>ডিমের ডেভিল (তৈরি ও পরিবেশন)</span></div></td>
+                        <td class="price">১.০০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রাইস (Yummy greetings)" data-price="1.50"></td>
+                        <td>৫</td>
+                        <td>মুখরোচক সম্ভাষণ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?w=100&auto=format&fit=crop&q=80" alt="রাইস" class="item-img"><span>রাইস (Yummy greetings)</span></div></td>
+                        <td class="price">১.৫০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="ছানা পনির" data-price="1.50"></td>
+                        <td>৬</td>
+                        <td>স্টার্টার / সাইড ডিশ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=100&auto=format&fit=crop&q=80" alt="পনির" class="item-img"><span>ছানা পনির</span></div></td>
+                        <td class="price">১.৫০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="ঝুরি (Main Course)" data-price="0.55"></td>
+                        <td>৭</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1599487488170-ded1ec91845f?w=100&auto=format&fit=crop&q=80" alt="ঝুরি" class="item-img"><span>ঝুরি (Main Course)</span></div></td>
+                        <td class="price">০.৫৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="সাদা ভাত" data-price="1.30"></td>
+                        <td>৮</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=100&auto=format&fit=crop&q=80" alt="সাদা ভাত" class="item-img"><span>সাদা ভাত</span></div></td>
+                        <td class="price">১.৩০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="যুগমোহন" data-price="1.30"></td>
+                        <td>৯</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=100&auto=format&fit=crop&q=80" alt="ডাল পদ" class="item-img"><span>যুগমোহন</span></div></td>
+                        <td class="price">১.৩০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="পটল চিংড়ি" data-price="0.80"></td>
+                        <td>১০</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=100&auto=format&fit=crop&q=80" alt="চিংড়ি" class="item-img"><span>পটল চিংড়ি</span></div></td>
+                        <td class="price">০.৮০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="মাছ" data-price="0.20"></td>
+                        <td>১১</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=100&auto=format&fit=crop&q=80" alt="মাছ" class="item-img"><span>মাছ</span></div></td>
+                        <td class="price">০.২০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="মাংস (চিকেন)" data-price="1.00"></td>
+                        <td>১২</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=100&auto=format&fit=crop&q=80" alt="চিকেন" class="item-img"><span>মাংস (চিকেন)</span></div></td>
+                        <td class="price">১.০০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="খাসির মাংস (মাটন)" data-price="1.00"></td>
+                        <td>১৩</td>
+                        <td>প্রধান রঞ্জন পদ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=100&auto=format&fit=crop&q=80" alt="মাটন" class="item-img"><span>খাসির মাংস (মাটন)</span></div></td>
+                        <td class="price">১.০০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="চাটনি (Dessert)" data-price="0.25"></td>
+                        <td>১৪</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=100&auto=format&fit=crop&q=80" alt="চাটনি" class="item-img"><span>চাটনি</span></div></td>
+                        <td class="price">০.২৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="পাপড়" data-price="0.25"></td>
+                        <td>১৫</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=100&auto=format&fit=crop&q=80" alt="পাপড়" class="item-img"><span>পাপড়</span></div></td>
+                        <td class="price">০.২৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="পায়েস" data-price="0.50"></td>
+                        <td>১৬</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=100&auto=format&fit=crop&q=80" alt="পায়েস" class="item-img"><span>পায়েস</span></div></td>
+                        <td class="price">০.৫০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="আইসক্রিম" data-price="0.50"></td>
+                        <td>১৭</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=100&auto=format&fit=crop&q=80" alt="আইসক্রিম" class="item-img"><span>আইসক্রিম</span></div></td>
+                        <td class="price">০.৫০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="মিষ্টি" data-price="0.25"></td>
+                        <td>১৮</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=100&auto=format&fit=crop&q=80" alt="মিষ্টি" class="item-img"><span>মিষ্টি</span></div></td>
+                        <td class="price">০.২৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="মুখশুদ্ধি" data-price="0.25"></td>
+                        <td>১৯</td>
+                        <td>মিষ্টি ও শেষ পাত</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&auto=format&fit=crop&q=80" alt="মুখশুদ্ধি" class="item-img"><span>মুখশুদ্ধি</span></div></td>
+                        <td class="price">০.২৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="মাছ ধোওয়া" data-price="0.20"></td>
+                        <td>২০</td>
+                        <td>অন্যান্য / শেষ কাজ</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=100&auto=format&fit=crop&q=80" alt="জল/পরিষ্কার" class="item-img"><span>মাছ ধোওয়া</span></div></td>
+                        <td class="price">০.২০ টাকা</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Second List: Cooking Description and Pricing -->
+        <h2 class="section-title"><i class="fas fa-fire-burner"></i> দ্বিতীয় তালিকা: রান্নার বিবরণ ও নির্ধারিত দাম</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>সিলেক্ট</th>
+                        <th>ক্রম</th>
+                        <th>রান্নার বিবরণ / পরিশ্রমের মাত্রা</th>
+                        <th>নির্ধারিত রান্নার দাম (টাকা)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: পাপড় (ভাজার কাজ)" data-price="0.10"></td>
+                        <td>১</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>পাপড় (ভাজার কাজ)</span></div></td>
+                        <td class="price">০.১০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: ঝুরি (প্রস্তুত ও পরিবেশন)" data-price="0.15"></td>
+                        <td>২</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>ঝুরি (প্রস্তুত ও পরিবেশন)</span></div></td>
+                        <td class="price">০.১৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: চাটনি (সাধারণ রান্না)" data-price="0.15"></td>
+                        <td>৩</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>চাটনি (সাধারণ রান্না)</span></div></td>
+                        <td class="price">০.১৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: পায়েস (একটু সময় সাপেক্ষ রান্না)" data-price="0.25"></td>
+                        <td>৪</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>পায়েস (সময় সাপেক্ষ রান্না)</span></div></td>
+                        <td class="price">০.২৫ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: সাদা ভাত (সেদ্ধ ও রান্নার কাজ)" data-price="0.40"></td>
+                        <td>৫</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>সাদা ভাত (সেদ্ধ ও রান্নার কাজ)</span></div></td>
+                        <td class="price">০.৪০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: যুগমোহন (ডাল বা পদ রান্না)" data-price="0.40"></td>
+                        <td>৬</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>যুগমোহন (ডাল বা পদ রান্না)</span></div></td>
+                        <td class="price">০.৪০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: রাইস (বিশেষ রান্না - পোলাও/ফ্রাইড রাইস)" data-price="0.70"></td>
+                        <td>৭</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>রাইস (বিশেষ রান্না - পোলাও/ফ্রাইড রাইস)</span></div></td>
+                        <td class="price">০.৭০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: ছানা পনির (বিশেষ মশলা ও কারিগরি রান্না)" data-price="0.80"></td>
+                        <td>৮</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>ছানা পনির (বিশেষ মশলা ও কারিগরি রান্না)</span></div></td>
+                        <td class="price">০.৮০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: পটল চিংড়ি (বেশি সময় ও মশলার কাজ)" data-price="0.90"></td>
+                        <td>৯</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>পটল চিংড়ি (বেশি সময় ও মশলার কাজ)</span></div></td>
+                        <td class="price">০.৯০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: ডিমের ডেভিল (ভাজার বিশেষ পরিশ্রম)" data-price="0.30"></td>
+                        <td>১০</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>ডিমের ডেভিল (ভাজার বিশেষ পরিশ্রম)</span></div></td>
+                        <td class="price">০.৩০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: মুরগির মাংস - চিকেন রান্না" data-price="0.80"></td>
+                        <td>১১</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>মুরগির মাংস (চিকেন) রান্না</span></div></td>
+                        <td class="price">০.৮০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: মাছ রান্না" data-price="0.40"></td>
+                        <td>১২</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>মাছ রান্না</span></div></td>
+                        <td class="price">০.৪০ টাকা</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="item-checkbox" data-name="রান্না: খাসির মাংস - মাটন রান্না" data-price="1.67"></td>
+                        <td>১৩</td>
+                        <td><div class="item-cell"><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=100&auto=format&fit=crop&q=80" alt="রান্না" class="item-img"><span>খাসির মাংস (মাটন) রান্না</span></div></td>
+                        <td class="price">১.৬৭ টাকা</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Highlighted Custom Dish Contact Box -->
+        <div class="custom-dish-highlight">
+            <h3><i class="fas fa-star" style="color: var(--secondary);"></i> আপনার পছন্দের অন্য কোনো বিশেষ ডিশ বা পদ রান্নার প্রয়োজন আছে কি?</h3>
+            <p>তালিকার বাইরের অন্য কোনো প্রিয় পদ বা বিশেষ রন্ধনশৈলী যোগ করতে চাইলে সরাসরি আমাদের সাথে যোগাযোগ করুন।</p>
+            <a href="https://wa.me/918637367572?text=হ্যালো,%20আমি%20'The%20RUC%20Caters'%20এর%20ওয়েবসাইট%20থেকে%20অন্য%20একটি%20বিশেষ%20ডিশ/পদের%20জন্য%20যোগাযোগ%20করতে%20চাই।" target="_blank">
+                <i class="fab fa-whatsapp" style="margin-right: 8px; font-size: 1.3rem;"></i> ৮৬৩৭৩৬৭৫৭২ নম্বরে WhatsApp করুন
+            </a>
+        </div>
+
+        <!-- Sticky Floating Summary & Booking Bar -->
+        <div class="summary-box">
+            <div class="summary-total">
+                মোট খরচ: <span id="total-price">০.০০</span> টাকা
+            </div>
+            <button id="whatsapp-booking-btn" class="whatsapp-btn" onclick="sendWhatsAppBooking()">
+                <i class="fab fa-whatsapp"></i> Book Now & Send Order
+            </button>
+        </div>
+
+        <!-- Important Note Section -->
+        <div class="note-box">
+            <h3><i class="fas fa-info-circle"></i> গুরুত্বপূর্ণ নির্দেশাবলী ও শর্তাবলী:</h3>
+            <p>বুকিং করার সময় যে নির্দিষ্ট লোকসংখ্যা (Guest Count) উল্লেখ করা হবে, হিসাব সেই অনুযায়ী করা হবে। অনুষ্ঠানের দিন যদি লোকসংখ্যা নির্ধারিত সংখ্যার চেয়ে বেশি হয়, তবে সেই অনুপাতে মোট খরচ বৃদ্ধি পাবে। পক্ষান্তরে, লোকসংখ্যা যদি সামান্য কিছু কমে যায়, তবে আনুপাতিক হারে খরচ সামান্য কমতে পারে; কিন্তু লোকসংখ্যা যদি অতিরিক্ত বা উল্লেখযোগ্য পরিমাণে কমে যায়, তবে মোট খরচ কমানো সম্ভব হবে না। কারণ আমাদের পূর্ব প্রস্তুতি অনুযায়ী সব ধরনের আনাজ কাটা, মশলা প্রস্তুত এবং রান্নার প্রাথমিক আয়োজন সম্পন্ন করতে হয়। এই বিষয়টি সদয়ভাবে বিবেচনা করার জন্য অনুরোধ করা হচ্ছে।</p>
+        </div>
+
+        <!-- Contact Box -->
+        <h2 class="section-title"><i class="fas fa-address-book"></i> যোগাযোগ বক্স</h2>
+        <div class="contact-box">
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp নম্বর</h3>
+                <p>+91 8637367572</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <h3>সেবার সময়</h3>
+                <p>২৪/৭ উপলব্ধ</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-headset"></i>
+                <h3>সহায়তা</h3>
+                <p>The RUC Caters সেবা</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; ২০২৬ The RUC Caters পোর্টাল | সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.item-checkbox');
+        const totalPriceSpan = document.getElementById('total-price');
+        const guestCountInput = document.getElementById('guest-count');
+
+        function updateTotalPrice() {
+            let baseTotal = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    baseTotal += parseFloat(cb.getAttribute('data-price'));
+                }
+            });
+
+            let guests = parseInt(guestCountInput.value) || 1;
+            if (guests < 1) guests = 1;
+
+            let finalTotal = baseTotal * guests;
+            totalPriceSpan.textContent = finalTotal.toFixed(2);
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateTotalPrice);
+        });
+
+        guestCountInput.addEventListener('input', updateTotalPrice);
+
+        function sendWhatsAppBooking() {
+            let selectedItems = [];
+            let baseTotal = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedItems.push("- " + cb.getAttribute('data-name') + " (" + cb.getAttribute('data-price') + " টাকা)");
+                    baseTotal += parseFloat(cb.getAttribute('data-price'));
+                }
+            });
+
+            if (selectedItems.length === 0) {
+                alert("দয়া করে বুকিং করার আগে প্রথম বা দ্বিতীয় তালিকা থেকে অন্তত একটি আইটেম সিলেক্ট করুন!");
+                return;
+            }
+
+            let guests = parseInt(guestCountInput.value) || 1;
+            let finalTotal = baseTotal * guests;
+
+            let message = "হ্যালো, আমি 'The RUC Caters' এর ওয়েবসাইট থেকে নিচের মেনুগুলো বুকিং করতে চাই:%0A%0A";
+            message += "👥 *মোট লোকসংখ্যা:* " + guests + " জন%0A%0A";
+            message += "📋 *সিলেক্ট করা আইটেমসমূহ:*%0A";
+            message += selectedItems.join("%0A");
+            message += "%0A%0A*প্রতি প্লেট/ব্যক্তির খরচ:* " + baseTotal.toFixed(2) + " টাকা";
+            message += "%0A*সর্বমোট খরচ (" + guests + " জনের জন্য):* " + finalTotal.toFixed(2) + " টাকা";
+
+            let whatsappUrl = "https://wa.me/918637367572?text=" + message;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
+
